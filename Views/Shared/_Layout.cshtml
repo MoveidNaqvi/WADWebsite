@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Registered Student List</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header-area">
+        <div class="navbar-area">
+            <div class="container">
+                <nav class="site-navbar">
+                    <a class="site-logo" asp-controller="Home" asp-action="Index">StudentList</a>
+                    <ul>
+                        <li><a class="" asp-area="" asp-controller="Home" asp-action="Index">home</a></li>
+                        <li><a class="" asp-area="" asp-controller="Home" asp-action="SList">List</a></li>
+                        <li><a class="" asp-area="" asp-controller="Student" asp-action="StudentList">CMS</a></li>
+                        <li><a asp-controller="security" asp-action="register">Register</a></li>
+                    </ul>
+                    <button class="nav-toggler">
+                        <span></span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="login">
+            <p>Welcome @User.Identity.Name</p>
+            <form asp-controller="Security" asp-action="SignOut" method="post">
+                <button type="submit" class="btn btn-info btn-md">Sign Out</button>
+            </form>
+        </div>
+    }
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <div id="container">
+        <div id="content">
+            <section></section>
+        </div>
+        <footer>
+            <p>StudentList, Copyright &copy; 2020</p>
+        </footer>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
